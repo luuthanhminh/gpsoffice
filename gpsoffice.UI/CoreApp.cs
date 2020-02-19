@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Flurl.Http;
+using gpsoffice.Core.Repositories;
 using gpsoffice.Core.Services;
 using gpsoffice.Core.Services.Interfaces;
 using gpsoffice.Core.ViewModels;
@@ -9,6 +10,7 @@ using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Realms;
 
 namespace gpsoffice.UI
 {
@@ -27,10 +29,14 @@ namespace gpsoffice.UI
 
             RegisterCustomAppStart<CustomMvxAppStart<FirstViewModel>>();
 
+            FlurlHttp.Configure(settings => settings.Timeout = TimeSpan.FromSeconds(15));
+
+
             Mvx.IoCProvider.RegisterType<IDialogService, DialogService>();
             Mvx.IoCProvider.RegisterType<IApiService, ApiService>();
+            Mvx.IoCProvider.RegisterType<VoucherRepository>();
 
-            FlurlHttp.Configure(settings => settings.Timeout = TimeSpan.FromSeconds(15));
+
 
         }
     }
