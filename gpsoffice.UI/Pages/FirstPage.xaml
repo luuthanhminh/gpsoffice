@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:views="clr-namespace:gpsoffice.UI.Pages;assembly=gpsoffice.UI"
+          xmlns:viewModels="clr-namespace:gpsoffice.Core.ViewModels;assembly=gpsoffice.Core"
+          x:TypeArguments="viewModels:FirstViewModel"
+          x:Class="gpsoffice.UI.Pages.FirstPage">
+    <ContentPage.Content>
+        <Grid>
+            <Label Text="First Page" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>
