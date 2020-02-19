@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using gpsoffice.Core.Helpers;
+using gpsoffice.Core.Services.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.Presenters.Hints;
@@ -11,13 +12,16 @@ namespace gpsoffice.Core.ViewModels.Base
 {
     public class BaseViewModel : MvxViewModel
     {
-        protected readonly IMvxNavigationService NavigationService;
+        protected readonly IMvxNavigationService _navigationService;
+
+        protected readonly IDialogService _dialogService;
 
         #region Constructors
 
-        public BaseViewModel(IMvxNavigationService navigationService)
+        public BaseViewModel(IMvxNavigationService navigationService, IDialogService dialogService)
         {
-            NavigationService = navigationService;
+            _navigationService = navigationService;
+            _dialogService = dialogService;
         }
 
         #endregion
@@ -48,14 +52,14 @@ namespace gpsoffice.Core.ViewModels.Base
         protected void PopToPage<TViewModel>() where TViewModel : MvxViewModel
         {
             var hint = new MvxPopPresentationHint(typeof(TViewModel));
-            NavigationService.ChangePresentation(hint);
+            _navigationService.ChangePresentation(hint);
         }
 
         protected async Task ClearStackAndNavigateToPage<TViewModel>() where TViewModel : MvxViewModel
         {
             var presentation = new MvxBundle(new Dictionary<string, string> { { PresentationConstant.CLEAR_STACK_AND_SHOW_PAGE, "" } });
 
-            await NavigationService.Navigate<TViewModel>(presentationBundle: presentation);
+            await _navigationService.Navigate<TViewModel>(presentationBundle: presentation);
         }
 
         protected void ShowLoading()
@@ -76,7 +80,7 @@ namespace gpsoffice.Core.ViewModels.Base
 
         protected async Task ClosePage()
         {
-            await NavigationService.Close(this);
+            await _navigationService.Close(this);
         }
 
         #endregion

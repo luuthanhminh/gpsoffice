@@ -4,10 +4,71 @@
           xmlns:views="clr-namespace:gpsoffice.UI.Pages;assembly=gpsoffice.UI"
           xmlns:viewModels="clr-namespace:gpsoffice.Core.ViewModels;assembly=gpsoffice.Core"
           x:TypeArguments="viewModels:FirstViewModel"
-          x:Class="gpsoffice.UI.Pages.FirstPage">
+          x:Class="gpsoffice.UI.Pages.FirstPage"
+          xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+        xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms">
     <ContentPage.Content>
-        <Grid>
-            <Label Text="First Page" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+        <Grid RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
+                <Label Text="Vouchers" FontSize="Title" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
+            <syncfusion:SfListView x:Name="lsVoucher"
+                                   Grid.Row="1"
+                                   ItemSize="110"
+                                   ItemSpacing="10"
+                                   DragStartMode="None"
+                                   BackgroundColor="White" 
+                                    SelectionMode="Single" 
+                                    SelectionGesture="Tap" 
+                                    SelectionBackgroundColor="Transparent"
+                                   ItemsSource="{Binding Vouchers}">
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="5,2" HasShadow="True" CornerRadius="7.5" BackgroundColor="#6696E9">
+                            <StackLayout  Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                                <Label FontSize="Title" Text="{Binding Narration}" VerticalOptions="Start" HorizontalOptions="StartAndExpand"/>
+                                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" FontSize="Subtitle" Text="User Name:" TextColor="White"/>
+                                    <Label Grid.Row="1" Grid.Column="0" FontSize="Subtitle" Text="Voucher Number:" TextColor="White"/>
+                                    <Label Grid.Row="2" Grid.Column="0" FontSize="Subtitle" Text="Voucher Date:" TextColor="White"/>
+                                    <Label Grid.Row="0" Grid.Column="1" FontSize="Subtitle" Text="{Binding UserName}" TextColor="White"/>
+                                    <Label Grid.Row="1" Grid.Column="1" FontSize="Subtitle" Text="{Binding VoucherNumber}" TextColor="White"/>
+                                    <Label Grid.Row="2" Grid.Column="1" FontSize="Subtitle" Text="{Binding VoucherDate}" TextColor="White"/>
+                                </Grid>
+
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+            <Label Grid.RowSpan="2" Text="No Data" TextColor="Gray" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding HasNoData}"/>
+            <busyindicator:SfBusyIndicator 
+                                            AnimationType="SingleCircle"
+                                            BackgroundColor="Transparent"
+                                            InputTransparent="True"
+                                            Title="Loading"
+                                            ViewBoxHeight="60"
+                                            ViewBoxWidth="60"
+                                            Grid.RowSpan="2"
+                                           IsBusy="{Binding IsLoading}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                            TextColor="#6696E9"
+                                            />
+
         </Grid>
     </ContentPage.Content>
 </views:BasePage>

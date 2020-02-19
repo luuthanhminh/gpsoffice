@@ -5,6 +5,8 @@ using System.Linq;
 using Foundation;
 using gpsoffice.UI;
 using MvvmCross.Forms.Platforms.Ios.Core;
+using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.SfBusyIndicator.XForms.iOS;
 using UIKit;
 
 namespace gpsoffice.iOS
@@ -24,7 +26,8 @@ namespace gpsoffice.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-
+            new SfBusyIndicatorRenderer();
+            SfListViewRenderer.Init();
             return base.FinishedLaunching(app, options);
         }
     }

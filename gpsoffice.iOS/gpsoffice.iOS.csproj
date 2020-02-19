@@ -130,19 +130,25 @@
     <PackageReference Include="MvvmCross.Forms">
       <Version>6.4.2</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
+      <Version>17.4.0.50</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>17.4.0.50</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\gpsoffice.Core\gpsoffice.Core.csproj">
-      <Project>{1833980A-2A7D-4AFA-BDBB-62B97F6E7542}</Project>
-      <Name>gpsoffice.Core</Name>
-    </ProjectReference>
+    <Folder Include="Presenter\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\gpsoffice.UI\gpsoffice.UI.csproj">
       <Project>{B7435CBE-3598-4ECB-B111-12003747857E}</Project>
       <Name>gpsoffice.UI</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Presenter\" />
+    <ProjectReference Include="..\gpsoffice.Core\gpsoffice.Core.csproj">
+      <Project>{1833980A-2A7D-4AFA-BDBB-62B97F6E7542}</Project>
+      <Name>gpsoffice.Core</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
