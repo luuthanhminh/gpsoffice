@@ -16,7 +16,7 @@ namespace gpsoffice.Core.Repositories
             {
                 foreach (var item in items)
                 {
-                    if (_realmInstance.All<VoucherDTO>().Any(i => i.UUID == item.UUID))
+                    if (r.All<VoucherDTO>().Any(i => i.UUID == item.UUID))
                     {
                         r.Add(item, update: true);
                     }
